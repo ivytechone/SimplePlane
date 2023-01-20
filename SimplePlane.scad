@@ -164,11 +164,6 @@ module NoseModule()
     // back support
     translate([noseLength-5,0,00]) cube([5, outerWidth, outerHeight-wingCutoutHeight]);
     
-    // Servo Mounts
-    /*
-    translate([servoPos, wallWidth, wallWidth]) ServoMount(1);
-    translate([servoPos,wallWidth+width,wallWidth]) ServoMount(-1);
-    */
     }   
     
 }
@@ -215,23 +210,6 @@ module MotorMount()
         translate([0,-5,9])
         cube([motorMountLength,10,4.25]);
     }
-}
-
-module ServoMount(direction)
-{
-    servoMountLength=4;
-    
-    rotate([90,0,90])
-    union()
-    {
-        linear_extrude(servoMountLength)
-        polygon([[0,0],[0,servoHeight],[direction*servoWidth,servoHeight]]);
-
-        translate([0,0,servoMountLength+servoLength])
-        linear_extrude(servoMountLength)
-        polygon([[0,0],[0,servoHeight],[direction*servoWidth,servoHeight]]);
-    }
-
 }
 
 module LandingGearMount()
