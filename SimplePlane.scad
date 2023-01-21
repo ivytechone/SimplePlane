@@ -88,19 +88,11 @@ module WingHolder()
 
 module Plane()
 {
-    difference()
-    {
-        
         union()
         {
             NoseModule();
-                       
-            intersection()
-            {
                 Tail();
             }
-        }
-    }
 }
 
 module NoseModule()
