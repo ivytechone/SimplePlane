@@ -70,41 +70,11 @@ module Plane()
         {
             NoseModule();
                        
-            
             intersection()
             {
                 Tail();
-                
-               /* linear_extrude(50)
-                polygon([[length, -50],
-                         [length, 50],
-                         [length-tailLength,50],
-                         [length-tailLength,-50]]);
-                */
-
             }
         }
-       
-   
-       // cut for rods
-       /*
-        translate([noseLength-10,6,height-6])
-        rotate([-2,90,0])
-        cylinder(260,2.4,2.4);
-        
-        translate([noseLength-10,outerWidth-6,height-6])
-        rotate([2,90,0])
-        cylinder(260,2.4,2.4);
-        
-        translate([noseLength-10,6,6])
-        rotate([-2,87,0])
-        cylinder(260,2.4,2.4);
-        
-        translate([noseLength-10,outerWidth-6,6])
-        rotate([2,87,0])
-        cylinder(260,2.4,2.4);
-        
-        */
     }
 }
 
