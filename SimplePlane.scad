@@ -41,15 +41,39 @@ batteryHolderOffset=(outerWidth - batteryHolderOuterWidth) / 2;
 tailWidth=14;
 tailLength=inchToMm(14);
     
+jointLength=20;
+    
+mode=2;
+
+if (mode==0) Plane(); // Whole Plane
+if (mode==1) NoseSegment(0,80, true); // Nose Section
+if (mode==2) NoseSegment(80,120, false); // Battery Section
+
+module NoseSegment(start, end, first)
+{
 intersection()
 {
-   // translate([-504,0,0])
-    Plane();
-   // cube([130,127,127]);
+        translate([-start,0,0]) Plane();
+        cube([end,1000,1000]);
 }
 
-//WingHolder();
+    if (!first)
+    {
+        translate([-(jointLength/2),wallWidth,wallWidth])
+        joint();
+    }
+}
 
+module joint()
+{
+    jointThickness=2;
+    difference()
+    {
+        cube([jointLength, width, height]);
+        translate([0,jointThickness,jointThickness]) 
+            cube([jointLength, width-(2*jointThickness), height]);
+    }
+}
 
 module WingHolder()
 {
