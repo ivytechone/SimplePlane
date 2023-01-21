@@ -30,13 +30,14 @@ motorMountLength=3;
 motorMountHoleSize=2.75/2;
 motorMountHolePatternRadius=8;
 
+thrustAngle=3;
+
 outerWidth = width + (2 * wallWidth);
 outerHeight = height + (2 * wallWidth);
 
 batteryHolderOuterWidth=batteryWidth+(2*wallWidth);
 batteryHolderOffset=(outerWidth - batteryHolderOuterWidth) / 2;
     
-
 tailWidth=14;
 tailLength=inchToMm(14);
     
@@ -135,12 +136,11 @@ module NoseModule()
     translate([noseLength-5,0,00]) cube([5, outerWidth, outerHeight-wingCutoutHeight]);
     
     }   
-    
 }
 
 module Nose()
 {
-    rotate([0,0,-3])
+    rotate([0,0,-thrustAngle])
     difference()
     {
     cube([motorMountLength, outerWidth, outerHeight]);
@@ -150,7 +150,7 @@ module Nose()
 
 module NoseCutout()
 {
-    rotate([0,0,-3])
+    rotate([0,0,-thrustAngle])
     translate([-10,0,0])
     cube([10, outerWidth+10, outerHeight]);
 }
@@ -182,16 +182,6 @@ module MotorMount()
     }
 }
 
-module LandingGearMount()
-{
-    
-}
-
-module WingMount()
-{
-    
-}
-
 module BatteryHolder()
 {
     union()
@@ -220,8 +210,6 @@ module Tail()
     linear_extrude(outerHeight-wingCutoutHeight)
     polygon([[noseLength,0],[noseLength, outerWidth],[length, offset+tailWidth],[length,offset]]);
 
-   // todo replace 20s with calculated value
-        
     vStabCutHeight=outerHeight-wingCutoutHeight-20;    
         
     translate([0,50,0])
