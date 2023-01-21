@@ -7,7 +7,7 @@ function inchToMm(x) = x*25.4;
 
 // Parameters
 length=inchToMm(24);
-width=inchToMm(1.5);  //(inside width)
+width=inchToMm(1.6);  //(inside width)
 height=40;
 wallWidth=2;
 
@@ -16,7 +16,7 @@ noseLength=inchToMm(10);
 batteryWidth=19.5;
 batteryHeight=34.5;
 batteryLength=69;
-batteryPos=inchToMm(3.5);
+batteryPos=inchToMm(4);
 
 servoWidth=12;
 servoLength=23.75;
@@ -107,7 +107,7 @@ module NoseModule()
     // front support for landing gear
     translate([batteryPos-3,0,0])
     rotate([0,-90,0])
-    linear_extrude(12)    
+    linear_extrude(9)    
     polygon([[0, 12],
              [10, 12],
              [20, 0],
