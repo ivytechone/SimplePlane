@@ -228,6 +228,15 @@ module Tail()
 
     vStabCutHeight=outerHeight-wingCutoutHeight-20;    
         
+        // cut along bottom
+        translate([0,50,0])
+        rotate([90,0,0])
+        linear_extrude(100)
+        polygon([[noseLength,0],
+            [length,0],
+            [length,20]]);
+
+        //cutout for horizontal stabalizer
     translate([0,50,0])
     rotate([90,0,0])
     linear_extrude(100)
@@ -236,13 +245,7 @@ module Tail()
              [length,vStabCutHeight],
              [length,0]]);
         
-    translate([0,50,0])
-    rotate([90,0,0])
-    linear_extrude(100)
-    polygon([[noseLength,0],
-        [length,0],
-        [length,20]]);
-
+        //cutout for vertical stabalizer
     linear_extrude(115)
     polygon([[length, hStabOffset],
              [length-hStabLength, hStabOffset],
