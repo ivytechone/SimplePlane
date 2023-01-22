@@ -9,7 +9,7 @@ function inchToMm(x) = x*25.4;
 length=inchToMm(24);
 width=inchToMm(1.6);  //(inside width)
 height=40;
-wallWidth=2;
+wallWidth=1.5;
 
 noseLength=inchToMm(10);
 
@@ -66,7 +66,7 @@ intersection()
 
 module joint()
 {
-    jointThickness=2;
+    jointThickness=1;
     difference()
     {
         cube([jointLength, width, height]);
