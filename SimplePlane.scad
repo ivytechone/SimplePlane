@@ -67,11 +67,16 @@ intersection()
 module joint()
 {
     jointThickness=1;
+    jointMargin=.2;
+    jointHeight=height+wallWidth-wingCutoutHeight;
     difference()
     {
-        cube([jointLength, width, height]);
+        cube([jointLength, width, jointHeight]);
+        cube([jointLength/2,jointMargin,jointHeight]);
+        cube([jointLength/2,width,jointMargin]);
+        translate([0,width-jointMargin,0]) cube([jointLength/2,jointMargin,jointHeight]);
         translate([0,jointThickness,jointThickness]) 
-            cube([jointLength, width-(2*jointThickness), height]);
+            cube([jointLength, width-(2*jointThickness), jointHeight]);
     }
 }
 
