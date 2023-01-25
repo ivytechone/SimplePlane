@@ -152,10 +152,6 @@ module NoseModule()
     translate([batteryPos,batteryHolderOffset,wallWidth]) BatteryHolder();
     
     translate([0,0,0]) Nose();
-    
-    // back support
-    translate([noseLength-5,0,00]) cube([5, outerWidth, outerHeight-wingCutoutHeight]);
-    
     }   
 }
 
@@ -233,8 +229,6 @@ module Tail()
         polygon([[0,0],[0, outerWidth],[tailLength, offset+tailWidth],[tailLength,offset]]);
 
         vStabCutHeight=outerHeight-wingCutoutHeight-20;
-    vStabCutHeight=outerHeight-wingCutoutHeight-20;    
-        vStabCutHeight=outerHeight-wingCutoutHeight-20;
         
         // cut along bottom
         translate([0,50,0])
@@ -259,5 +253,10 @@ module Tail()
              [tailLength-hStabLength, hStabOffset],
              [tailLength-hStabLength, hStabOffset+hStabWidth],
              [tailLength, hStabOffset+hStabWidth]]);
+        
+        // hollow part
+        translate([-1,width/2, width/2])
+        rotate([0,88.5,0])
+        cylinder(tailLength-hStabLength-5, 16, 8); 
     } 
 }
