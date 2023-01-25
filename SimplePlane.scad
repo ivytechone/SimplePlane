@@ -93,11 +93,11 @@ module WingHolder()
 
 module Plane()
 {
-        union()
-        {
-            NoseModule();
-                Tail();
-            }
+    union()
+    {
+        NoseModule();
+        translate([noseLength,0,0])Tail();
+    }
 }
 
 module NoseModule()
@@ -225,36 +225,39 @@ module Tail()
     hStabWidth=4;
     hStabLength=85;
     hStabOffset=(outerWidth-hStabWidth) / 2;
+    tailLength=length-noseLength;
     
     difference()
     {
-    linear_extrude(outerHeight-wingCutoutHeight)
-    polygon([[noseLength,0],[noseLength, outerWidth],[length, offset+tailWidth],[length,offset]]);
+        linear_extrude(outerHeight-wingCutoutHeight)
+        polygon([[0,0],[0, outerWidth],[tailLength, offset+tailWidth],[tailLength,offset]]);
 
+        vStabCutHeight=outerHeight-wingCutoutHeight-20;
     vStabCutHeight=outerHeight-wingCutoutHeight-20;    
+        vStabCutHeight=outerHeight-wingCutoutHeight-20;
         
         // cut along bottom
         translate([0,50,0])
         rotate([90,0,0])
         linear_extrude(100)
-        polygon([[noseLength,0],
-            [length,0],
-            [length,20]]);
+        polygon([[0,0],
+            [tailLength,0],
+            [tailLength,20]]);
 
         //cutout for horizontal stabalizer
-    translate([0,50,0])
-    rotate([90,0,0])
-    linear_extrude(100)
-    polygon([[length-hStabLength,0],
-             [length-hStabLength,vStabCutHeight],
-             [length,vStabCutHeight],
-             [length,0]]);
+        translate([0,50,0])
+        rotate([90,0,0])
+        linear_extrude(100)
+        polygon([[tailLength-hStabLength,0],
+                [tailLength-hStabLength,vStabCutHeight],
+                [tailLength,vStabCutHeight],
+                [tailLength,0]]);
         
         //cutout for vertical stabalizer
-    linear_extrude(115)
-    polygon([[length, hStabOffset],
-             [length-hStabLength, hStabOffset],
-             [length-hStabLength, hStabOffset+hStabWidth],
-             [length, hStabOffset+hStabWidth]]);
+        linear_extrude(115)
+        polygon([[tailLength, hStabOffset],
+             [tailLength-hStabLength, hStabOffset],
+             [tailLength-hStabLength, hStabOffset+hStabWidth],
+             [tailLength, hStabOffset+hStabWidth]]);
     } 
 }
