@@ -48,6 +48,51 @@ mode=2;
 if (mode==0) Plane(); // Whole Plane
 if (mode==1) NoseSegment(0,80, true); // Nose Section
 if (mode==2) NoseSegment(80,120, false); // Battery Section
+module BackWingClip()
+{
+    difference()
+    {
+        cube([12,width-5, 2],center=true);
+        cylinder(h=10, r=1,center=true);
+    }
+}
+
+module FrontWingClip()
+{
+    h1=9;
+    h2=4;
+    d2=tan(72)*h2;
+    echo(d2);
+    t=2;
+    tabThickness=9;
+    
+    linear_extrude(width)
+    polygon([[-15,0],
+         [0,h1+t],
+         [d2,h1+h2],
+         [d2,h1+h2-t],
+         [t,h1],
+         [t,0],
+         [0,0]]
+    );
+    
+    linear_extrude(tabThickness)
+    polygon([
+        [-15,0],
+        [t,0],
+        [t+10, -15],
+        [-25, -15]
+    ]);
+    
+    translate([0,0,width-tabThickness])
+    linear_extrude(tabThickness)
+    polygon([
+        [-15,0],
+        [t,0],
+        [t+10, -15],
+        [-25, -15]
+    ]);
+}
 
 module NoseSegment(start, end, first)
 {
