@@ -43,11 +43,15 @@ tailLength=inchToMm(14);
     
 jointLength=20;
     
-mode=2;
+mode=0;
 
 if (mode==0) Plane(); // Whole Plane
 if (mode==1) NoseSegment(0,80, true); // Nose Section
 if (mode==2) NoseSegment(80,120, false); // Battery Section
+if (mode==3) NoseSegment(200,120, false);    
+if (mode==4) NoseSegment(320,150, true);
+if (mode==5) NoseSegment(470,150, true);
+
 module BackWingClip()
 {
     difference()
