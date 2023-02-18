@@ -51,6 +51,7 @@ if (mode==2) NoseSegment(80,120, false); // Battery Section
 if (mode==3) NoseSegment(200,120, false);    
 if (mode==4) NoseSegment(320,150, true);
 if (mode==5) NoseSegment(470,150, true);
+if (mode==6) FrontWingClip();
 
 module BackWingClip()
 {
@@ -68,34 +69,43 @@ module FrontWingClip()
     d2=tan(72)*h2;
     echo(d2);
     t=2;
-    tabThickness=9;
+    tabThickness=8.9;
     
-    linear_extrude(width)
-    polygon([[-15,0],
-         [0,h1+t],
-         [d2,h1+h2],
-         [d2,h1+h2-t],
-         [t,h1],
-         [t,0],
-         [0,0]]
-    );
-    
-    linear_extrude(tabThickness)
-    polygon([
-        [-15,0],
-        [t,0],
-        [t+10, -15],
-        [-25, -15]
-    ]);
-    
-    translate([0,0,width-tabThickness])
-    linear_extrude(tabThickness)
-    polygon([
-        [-15,0],
-        [t,0],
-        [t+10, -15],
-        [-25, -15]
-    ]);
+    difference()
+    {
+        union()
+        {
+            linear_extrude(width)
+            polygon([[-15,0],
+                 [0,h1+t],
+                 [d2,h1+h2],
+                 [d2,h1+h2-t],
+                 [t,h1],
+                 [t,0],
+                 [0,0]]
+            );
+            
+            linear_extrude(tabThickness)
+            polygon([
+                [-15,0],
+                [t,0],
+                [t+10, -15],
+                [-25, -15]
+            ]);
+            
+            translate([0,0,width-tabThickness])
+            linear_extrude(tabThickness)
+            polygon([
+                [-15,0],
+                [t,0],
+                [t+10, -15],
+                [-25, -15]
+            ]);
+        }
+        translate([0,0,width/2])
+        rotate([0,0,15])
+        cube([40, 9, batteryWidth], center=true);
+    }
 }
 
 module NoseSegment(start, end, first)
